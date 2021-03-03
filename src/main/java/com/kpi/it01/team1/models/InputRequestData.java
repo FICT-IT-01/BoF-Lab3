@@ -8,7 +8,7 @@ public class InputRequestData {
     private final ParameterRange paramCRange;
     private final ParameterRange paramDRange;
 
-    public InputRequestData(ArrayList<Double> numbers) {
+    public InputRequestData(ArrayList<Integer> numbers) {
         if (numbers.size() != 12) {
             throw new IllegalArgumentException("Array must contains 12 digits");
         }

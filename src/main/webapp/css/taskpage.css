@@ -3,11 +3,18 @@
     font-size: 16px;
 }
 
-.center {
+.center-25p {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 25%;
+}
+
+.center-50p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 table {

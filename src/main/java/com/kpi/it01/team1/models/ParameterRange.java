@@ -1,25 +1,25 @@
 package com.kpi.it01.team1.models;
 
 public class ParameterRange {
-    private final double minValue;
-    private final double maxValue;
-    private final double step;
+    private final int minValue;
+    private final int maxValue;
+    private final int step;
 
-    public ParameterRange(double minValue, double maxValue, double step) {
+    public ParameterRange(int minValue, int maxValue, int step) {
         this.minValue = minValue;
         this.maxValue = maxValue;
         this.step = step;
     }
 
-    public double getMinValue() {
+    public int getMinValue() {
         return minValue;
     }
 
-    public double getMaxValue() {
+    public int getMaxValue() {
         return maxValue;
     }
 
-    public double getStep() {
+    public int getStep() {
         return step;
     }
 }

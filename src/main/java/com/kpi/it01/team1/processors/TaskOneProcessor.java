@@ -15,7 +15,7 @@ public class TaskOneProcessor implements Processor {
         return input;
     }
 
-    private double compute(double a, double b, double c, double d) {
+    private double compute(int a, int b, int c, int d) {
         return Math.sqrt(Math.abs(Math.sin(a) - ((4 * Math.log(b)) / Math.pow(c, d))));
     }
 }

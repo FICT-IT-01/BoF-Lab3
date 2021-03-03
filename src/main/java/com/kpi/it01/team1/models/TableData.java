@@ -3,10 +3,10 @@ package com.kpi.it01.team1.models;
 import java.util.ArrayList;
 
 public class TableData {
-    private final ArrayList<Double> paramAValues;
-    private final ArrayList<Double> paramBValues;
-    private final ArrayList<Double> paramCValues;
-    private final ArrayList<Double> paramDValues;
+    private final ArrayList<Integer> paramAValues;
+    private final ArrayList<Integer> paramBValues;
+    private final ArrayList<Integer> paramCValues;
+    private final ArrayList<Integer> paramDValues;
     private final ArrayList<Double> paramYValues;
 
     public TableData(InputRequestData request) {
@@ -16,16 +16,16 @@ public class TableData {
         this.paramDValues = new ArrayList<>();
         this.paramYValues = new ArrayList<>();
 
-        for (double a = request.getParamARange().getMinValue();
+        for (int a = request.getParamARange().getMinValue();
              a <= request.getParamARange().getMaxValue();
              a += request.getParamARange().getStep()){
-            for (double b = request.getParamBRange().getMinValue();
+            for (int b = request.getParamBRange().getMinValue();
                  b <= request.getParamBRange().getMaxValue();
                  b += request.getParamBRange().getStep()) {
-                for (double c = request.getParamCRange().getMinValue();
+                for (int c = request.getParamCRange().getMinValue();
                      c <= request.getParamCRange().getMaxValue();
                      c += request.getParamCRange().getStep()) {
-                    for (double d = request.getParamDRange().getMinValue();
+                    for (int d = request.getParamDRange().getMinValue();
                          d <= request.getParamDRange().getMaxValue();
                          d += request.getParamDRange().getStep()) {
 
@@ -40,19 +40,19 @@ public class TableData {
 
     }
 
-    public ArrayList<Double> getParamAValues() {
+    public ArrayList<Integer> getParamAValues() {
         return paramAValues;
     }
 
-    public ArrayList<Double> getParamBValues() {
+    public ArrayList<Integer> getParamBValues() {
         return paramBValues;
     }
 
-    public ArrayList<Double> getParamCValues() {
+    public ArrayList<Integer> getParamCValues() {
         return paramCValues;
     }
 
-    public ArrayList<Double> getParamDValues() {
+    public ArrayList<Integer> getParamDValues() {
         return paramDValues;
     }
 
