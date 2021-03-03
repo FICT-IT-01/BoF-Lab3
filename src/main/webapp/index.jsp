@@ -8,7 +8,7 @@
 <%@ page import="com.kpi.it01.team1.Constants" %>
 <%@ page import="com.kpi.it01.team1.models.UserRequest" %>
 <%@ page import="com.kpi.it01.team1.helpers.ParseHelper" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%
     RequestHelper requestHelper = new RequestHelper(request);
     ParseHelper parseHelper = new ParseHelper();
@@ -34,8 +34,12 @@
 
     cookies.add(prevValuesCookie);
 
-    inputRequestData = new InputRequestData(userRequest.getCurrentValues());
-
+    try {
+        inputRequestData = new InputRequestData(userRequest.getCurrentValues());
+    } catch (IllegalArgumentException e) {
+        inputRequestData = new InputRequestData(userRequest.getPrevValues());
+        response.sendError(406, e.getMessage());
+    }
     try {
         userRequest.setFirstVisit(Boolean.parseBoolean(requestHelper.getCookieByName("isFirstVisit").getValue()));
     } catch (InvalidCookieException e) {
@@ -60,7 +64,8 @@
 <head>
     <meta charset="utf-8">
     <title>Lab2</title>
-    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300+Sans:300">
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat:300+Sans:300">
     <link rel="stylesheet" href="css/taskpage.css">
 </head>
 <body>
@@ -69,7 +74,8 @@
         <div>
             <div>
                 <hr>
-                    <img src="https://i.imgur.com/aRyvxMD.png" alt="task1" class="center-25p" data-image-width="338" data-image-height="71">
+                <img src="https://i.imgur.com/aRyvxMD.png" alt="task1" class="center-25p" data-image-width="338"
+                     data-image-height="71">
                 <hr>
             </div>
 
@@ -79,9 +85,12 @@
                     for (String paramName : Constants.PARAMETERS_NAMES) {
                         out.println("<div>");
                         out.println("<h4>" + paramName + ": </h4>");
-                        out.println("From: <input type=\"number\" placeholder=\"from\" name=\""+ paramName + "-from\" required value=\"" + currentValues.get(c) + "\">"); c++;
-                        out.println("To: <input type=\"number\" placeholder=\"to\" name=\""+ paramName + "-to\" required value=\"" + currentValues.get(c) + "\">"); c++;
-                        out.println("Step: <input type=\"number\" placeholder=\"step\" name=\""+ paramName + "-step\" required value=\"" + currentValues.get(c) + "\">"); c++;
+                        out.println("From: <input type=\"number\" placeholder=\"from\" name=\"" + paramName + "-from\" required value=\"" + currentValues.get(c) + "\">");
+                        c++;
+                        out.println("To: <input type=\"number\" placeholder=\"to\" name=\"" + paramName + "-to\" required value=\"" + currentValues.get(c) + "\">");
+                        c++;
+                        out.println("Step: <input type=\"number\" placeholder=\"step\" name=\"" + paramName + "-step\" required value=\"" + currentValues.get(c) + "\">");
+                        c++;
                         out.println("</div>");
 
                     }
@@ -95,8 +104,7 @@
 
             <%
                 TableData tableData = userRequest.getTableData();
-                if (!userRequest.isFirstVisit() && tableData != null)
-                {
+                if (!userRequest.isFirstVisit() && tableData != null) {
                     out.println("<table id=\"t01\">");
                     out.println("<tr>");
                     for (String paramName : Constants.PARAMETERS_NAMES) {
