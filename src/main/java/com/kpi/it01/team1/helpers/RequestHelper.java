@@ -34,8 +34,7 @@ public class RequestHelper {
     public Integer getParameterValueByName(String name) throws InvalidParameterException {
         try {
             return Integer.parseInt(request.getParameter(name));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new InvalidParameterException("Parameter " + name + " doesn`t contains value", name, e);
         }
     }
@@ -48,7 +47,13 @@ public class RequestHelper {
         } catch (Exception e) {
             StringBuilder sb = new StringBuilder();
 
-            for (Integer n : Constants.DEFAULT_VALUES) {
+            ArrayList<Integer> default_values = Constants.DEFAULT_VALUES;
+            for (int i = 0; i < default_values.size(); i++) {
+                Integer n = default_values.get(i);
+                if (i == default_values.size() - 1) {
+                    sb.append(n);
+                    break;
+                }
                 sb.append(n).append("$");
             }
 
