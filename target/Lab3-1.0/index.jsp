@@ -6,10 +6,13 @@
 <%@ page import="com.kpi.it01.team1.Constants" %>
 <%@ page import="com.kpi.it01.team1.models.UserRequest" %>
 <%@ page import="com.kpi.it01.team1.helpers.ParseHelper" %>
+<<<<<<< HEAD
 <%@ page import="com.kpi.it01.team1.data.abstractions.DataProvider" %>
 <%@ page import="com.kpi.it01.team1.data.providers.InMemoryDataProvider" %>
 <%@ page import="com.kpi.it01.team1.models.TaskModel" %>
 <%@ page import="java.util.ArrayList" %>
+=======
+>>>>>>> f293061439909d939e95b42d98b287fcb017252b
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%
     RequestHelper requestHelper = new RequestHelper(request);
@@ -48,8 +51,12 @@
 
     cookies.add(prevValuesCookie);
 
-    inputRequestData = new InputRequestData(userRequest.getCurrentValues());
-
+    try {
+        inputRequestData = new InputRequestData(userRequest.getCurrentValues());
+    } catch (IllegalArgumentException e) {
+        inputRequestData = new InputRequestData(userRequest.getPrevValues());
+        response.sendError(406, e.getMessage());
+    }
     try {
         userRequest.setFirstVisit(Boolean.parseBoolean(requestHelper.getCookieByName("isFirstVisit").getValue()));
     } catch (InvalidCookieException e) {
@@ -84,7 +91,11 @@
         <div>
             <div>
                 <hr>
+<<<<<<< HEAD
                 <img src="<%= task.getImageLink() %>" alt="task1" class="center-25p" data-image-width="338"
+=======
+                <img src="https://i.imgur.com/aRyvxMD.png" alt="task1" class="center-25p" data-image-width="338"
+>>>>>>> f293061439909d939e95b42d98b287fcb017252b
                      data-image-height="71">
                 <hr>
             </div>

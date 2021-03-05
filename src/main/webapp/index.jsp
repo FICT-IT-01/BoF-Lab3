@@ -48,8 +48,12 @@
 
     cookies.add(prevValuesCookie);
 
-    inputRequestData = new InputRequestData(userRequest.getCurrentValues());
-
+    try {
+        inputRequestData = new InputRequestData(userRequest.getCurrentValues());
+    } catch (IllegalArgumentException e) {
+        inputRequestData = new InputRequestData(userRequest.getPrevValues());
+        response.sendError(406, e.getMessage());
+    }
     try {
         userRequest.setFirstVisit(Boolean.parseBoolean(requestHelper.getCookieByName("isFirstVisit").getValue()));
     } catch (InvalidCookieException e) {
@@ -84,8 +88,7 @@
         <div>
             <div>
                 <hr>
-                <img src="<%= task.getImageLink() %>" alt="task1" class="center-25p" data-image-width="338"
-                     data-image-height="71">
+                    <img src="<%= task.getImageLink() %>" alt="task1" class="center-25p" data-image-width="338" data-image-height="71">
                 <hr>
             </div>
 
